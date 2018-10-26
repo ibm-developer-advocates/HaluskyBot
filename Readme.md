@@ -26,3 +26,5 @@ which you can create via talking to [BotFather](https://telegram.me/BotFather) i
 
 ## Watson visual recognition service 
 As you can see in the visual recognition service all you need to start a class is 10 pictures, please do keep in mind that the number of example (positive & negative) images is important as training events count towards your API usage which with lite plan is limited. 
+
+[The Flow.json](./telegram-node-red-flow.json)
