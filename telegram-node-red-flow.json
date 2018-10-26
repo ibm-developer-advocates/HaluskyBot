@@ -1,0 +1,509 @@
+[
+    {
+        "id": "c529ef43.a689d",
+        "type": "tab",
+        "label": "Telegram",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "681bb4ea.1eaa4c",
+        "type": "tab",
+        "label": "VisualRecog",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1c8d8eec.b77b91",
+        "type": "ibmiot",
+        "z": "",
+        "name": "iotworkshop"
+    },
+    {
+        "id": "e82360ac.34264",
+        "type": "twilio-api",
+        "z": "",
+        "sid": "ACb60a176699fac65a7e5db07cc78c451c",
+        "from": "43676800104003",
+        "name": ""
+    },
+    {
+        "id": "31fcd14a.30947e",
+        "type": "ibmiot",
+        "z": "",
+        "name": "iotworkshop"
+    },
+    {
+        "id": "a9b67eaa.d09be",
+        "type": "twilio-api",
+        "z": "",
+        "sid": "ACb60a176699fac65a7e5db07cc78c451c",
+        "from": "43676800104003",
+        "name": ""
+    },
+    {
+        "id": "bc798047.1ed2e",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "HaluskyBot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "pollinterval": ""
+    },
+    {
+        "id": "ccb9054e.ed8af8",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "DreiTroyBot",
+        "usernames": "Hannes,Mirjam",
+        "chatids": "541988470,519289061"
+    },
+    {
+        "id": "892454d0.d51728",
+        "type": "ibmiot",
+        "z": "",
+        "name": "iotworkshop"
+    },
+    {
+        "id": "5a85b8c6.4fcaa8",
+        "type": "telegram bot",
+        "z": "c529ef43.a689d",
+        "botname": "HaluskyBot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "pollinterval": ""
+    },
+    {
+        "id": "cb01ffef.b03be",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "HeinzBot",
+        "usernames": "",
+        "chatids": ""
+    },
+    {
+        "id": "8c18a5ec.3d6f38",
+        "type": "twilio-api",
+        "z": "",
+        "sid": "ACb60a176699fac65a7e5db07cc78c451c",
+        "from": "43676800104003",
+        "name": ""
+    },
+    {
+        "id": "b7867fc8.39ea2",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "HaluskyBot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "pollinterval": "300"
+    },
+    {
+        "id": "a1effb.731cf008",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "HaluskyBot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "pollinterval": "300"
+    },
+    {
+        "id": "8bd89c5f.5ee6d",
+        "type": "twitter-credentials",
+        "z": "",
+        "screen_name": "SkrabakL"
+    },
+    {
+        "id": "2a9b377.a711dc8",
+        "type": "function",
+        "z": "c529ef43.a689d",
+        "name": "save messageId",
+        "func": "// We store the messageId to be able to edit this reply in the callback query. \ncontext.global.keyboard.messageId = msg.payload.sentMessageId;\nreturn [ msg ];\n",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 925,
+        "y": 396,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "97dbd1bc.b70ba",
+        "type": "debug",
+        "z": "c529ef43.a689d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 387,
+        "y": 270,
+        "wires": []
+    },
+    {
+        "id": "8d7f9db1.9b584",
+        "type": "telegram receiver",
+        "z": "c529ef43.a689d",
+        "name": "",
+        "bot": "a1effb.731cf008",
+        "saveDataDir": "",
+        "x": 114,
+        "y": 279,
+        "wires": [
+            [
+                "97dbd1bc.b70ba",
+                "35ffb077.3374d",
+                "7fc5c49f.d0b71c",
+                "d0122e17.ae512"
+            ],
+            [
+                "97dbd1bc.b70ba",
+                "57fd394a.ef9408"
+            ]
+        ]
+    },
+    {
+        "id": "67abccdc.aff744",
+        "type": "telegram sender",
+        "z": "c529ef43.a689d",
+        "name": "show inline keyboard",
+        "bot": "a1effb.731cf008",
+        "x": 714,
+        "y": 393,
+        "wires": [
+            [
+                "2a9b377.a711dc8"
+            ]
+        ]
+    },
+    {
+        "id": "57fd394a.ef9408",
+        "type": "function",
+        "z": "c529ef43.a689d",
+        "name": "Not Authorised",
+        "func": "var outputMsgs = [];\n\noutputMsgs.push({payload : {\n           chatId : msg.payload.chatId,\n           type : \"message\",\n           content : \"You are not authorized. The bot is currently being developed.\"}});\nreturn [ outputMsgs ];\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 85,
+        "y": 398,
+        "wires": [
+            [
+                "4b12c409.d9c4ec"
+            ]
+        ]
+    },
+    {
+        "id": "4b12c409.d9c4ec",
+        "type": "telegram sender",
+        "z": "c529ef43.a689d",
+        "name": "",
+        "bot": "a1effb.731cf008",
+        "x": 95,
+        "y": 495,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35ffb077.3374d",
+        "type": "function",
+        "z": "c529ef43.a689d",
+        "name": "Prepare for Pic URL",
+        "func": "if(msg.payload.type == \"photo\")\n{\n    var url = msg.payload.weblink;\n    msg.url = url;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 100,
+        "wires": [
+            [
+                "a29f63aa.a0364"
+            ]
+        ]
+    },
+    {
+        "id": "92c08f2d.425c4",
+        "type": "comment",
+        "z": "c529ef43.a689d",
+        "name": "Image Recognition from Telegram pic",
+        "info": "",
+        "x": 370,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "a29f63aa.a0364",
+        "type": "http request",
+        "z": "c529ef43.a689d",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "url": "",
+        "tls": "",
+        "x": 557,
+        "y": 100,
+        "wires": [
+            [
+                "8ab5330f.d2681"
+            ]
+        ]
+    },
+    {
+        "id": "a5855949.7ef548",
+        "type": "telegram sender",
+        "z": "c529ef43.a689d",
+        "name": "",
+        "bot": "a1effb.731cf008",
+        "x": 1176,
+        "y": 161,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ae314fd.d9527c",
+        "type": "link in",
+        "z": "681bb4ea.1eaa4c",
+        "name": "foodRecognizeInput",
+        "links": [
+            "8ab5330f.d2681",
+            "837b6349.c15388"
+        ],
+        "x": 143,
+        "y": 166,
+        "wires": [
+            [
+                "7713683a.a5e13"
+            ]
+        ]
+    },
+    {
+        "id": "b5188532.c04ad8",
+        "type": "link out",
+        "z": "681bb4ea.1eaa4c",
+        "name": "food",
+        "links": [
+            "22901f99.551d6",
+            "fc4a2a04.d24468"
+        ],
+        "x": 670,
+        "y": 149,
+        "wires": []
+    },
+    {
+        "id": "8ab5330f.d2681",
+        "type": "link out",
+        "z": "c529ef43.a689d",
+        "name": "picfromtelegram",
+        "links": [
+            "7ae314fd.d9527c",
+            "9b14a2f2.cc2e2"
+        ],
+        "x": 702,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "7fc5c49f.d0b71c",
+        "type": "function",
+        "z": "c529ef43.a689d",
+        "name": "set global",
+        "func": "global.set(\"chatid\",msg.payload.chatId);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 110,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d0122e17.ae512",
+        "type": "function",
+        "z": "c529ef43.a689d",
+        "name": "inline keyboard message",
+        "func": "context.global.keyboard = { pending : true };\n\nvar opts = {\n reply_to_message_id: msg.payload.messageId//,\n//  reply_markup: JSON.stringify({\n//  \"keyboard\": [[\n//  {\n//  \"text\": \"Webcam Foto Analyse\",\n//  \"callback_data\": \"foto\" \n//  }, \n//  {\n//  \"text\": \"Temperatur\",\n//  \"callback_data\": \"grad\" \n//  }]\n//  ]\n//  })\n};\n\nmsg.payload.content = \"What's up?\";\n//msg.payload.options = opts;\n\nreturn msg ;\n",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 460,
+        "y": 393,
+        "wires": [
+            [
+                "67abccdc.aff744"
+            ]
+        ]
+    },
+    {
+        "id": "1b81719d.ad596e",
+        "type": "comment",
+        "z": "c529ef43.a689d",
+        "name": "Image Recognition Result",
+        "info": "",
+        "x": 966,
+        "y": 41,
+        "wires": []
+    },
+    {
+        "id": "714f24b7.1f4cac",
+        "type": "function",
+        "z": "c529ef43.a689d",
+        "name": "Process Food Results",
+        "func": "if (typeof msg.payload == 'undefined') {\n    return null;\n}\nmsg.result = msg.payload;\n\nvar bestcolor = -1;\nvar colorscore = 0;\nvar c_id = 0;\nvar say = \"\";\nvar item;\n\nfor ( c_id=0; c_id < (msg.result.images[0].classifiers.length); c_id++ ){\n    // find the best color, if any\n    for( i =0; i<(msg.result.images[0].classifiers[c_id].classes.length); i++ ){\n      var object = msg.result.images[0].classifiers[c_id].classes[i].class;\n      if ( object.includes(\"color\") ) {\n        if( msg.result.images[0].classifiers[c_id].classes[i].score > colorscore){\n            bestcolor = i;\n            colorscore = msg.result.images[0].classifiers[c_id].classes[i].score;\n        }\n      }\n    }\n \n    var bestItem = 0;\n    var itemScore = 0;\n    for( i =0; i<(msg.result.images[0].classifiers[c_id].classes.length); i++ ){\n      var object = msg.result.images[0].classifiers[c_id].classes[i].class;\n      if ( !object.includes(\"color\") ) {\n        if( msg.result.images[0].classifiers[c_id].classes[i].score > itemScore){\n            bestItem = i;\n            itemScore =  msg.result.images[0].classifiers[c_id].classes[i].score;\n        }\n      }\n    }\n \n     if( bestcolor != \"-1\") {\n        // found a color\n        item = msg.result.images[0].classifiers[c_id].classes[bestcolor].class + \" \" + msg.result.images[0].classifiers[c_id].classes[bestItem].class;\n        bestcolor = -1;\n    } else {\n       item = msg.result.images[0].classifiers[c_id].classes[bestItem].class;\n    }\n//    say = say + \" Watson's \" + msg.result.images[0].classifiers[c_id].name + \" classifier thinks this picture contains a \" + item +\".\";\n    say = say + \" Watson thinks it can see this food: \" + item +\". \\n\";\n}\n\nvar picInfo = msg.result.images[0].classifiers[0].classes;\nvar arrayLength = picInfo.length;\nvar outputMsg = [];\nvar temp = \"\";\nfor (var i = 0; i < arrayLength; i++) {\n    temp = temp + picInfo[i].class + \" - \" + picInfo[i].score + \"\\n\";\n}\noutputMsg = { payload : \n                {   chatId : global.get(\"chatid\"), \n                    type : \"message\", \n                    content : say + temp\n                }\n};\n\nreturn outputMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 938,
+        "y": 223,
+        "wires": [
+            [
+                "a5855949.7ef548"
+            ]
+        ]
+    },
+    {
+        "id": "fc4a2a04.d24468",
+        "type": "link in",
+        "z": "c529ef43.a689d",
+        "name": "processFoodOuput",
+        "links": [
+            "b5188532.c04ad8"
+        ],
+        "x": 771,
+        "y": 224,
+        "wires": [
+            [
+                "714f24b7.1f4cac"
+            ]
+        ]
+    },
+    {
+        "id": "9b14a2f2.cc2e2",
+        "type": "link in",
+        "z": "681bb4ea.1eaa4c",
+        "name": "classify For Halusky",
+        "links": [
+            "8ab5330f.d2681",
+            "837b6349.c15388"
+        ],
+        "x": 134,
+        "y": 61,
+        "wires": [
+            [
+                "27590c86.f44aec"
+            ]
+        ]
+    },
+    {
+        "id": "88c7fbd4.891dd8",
+        "type": "link out",
+        "z": "681bb4ea.1eaa4c",
+        "name": "classify For Halusky Result",
+        "links": [
+            "8c5b3ae4.0121f8"
+        ],
+        "x": 670,
+        "y": 71,
+        "wires": []
+    },
+    {
+        "id": "8c5b3ae4.0121f8",
+        "type": "link in",
+        "z": "c529ef43.a689d",
+        "name": "processCustomResultOutput",
+        "links": [
+            "88c7fbd4.891dd8"
+        ],
+        "x": 782,
+        "y": 163,
+        "wires": [
+            [
+                "1afb6377.77bfad"
+            ]
+        ]
+    },
+    {
+        "id": "700839a8.1033b8",
+        "type": "http request",
+        "z": "681bb4ea.1eaa4c",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "url": "",
+        "tls": "",
+        "x": 459.5,
+        "y": 66,
+        "wires": [
+            [
+                "88c7fbd4.891dd8"
+            ]
+        ]
+    },
+    {
+        "id": "27590c86.f44aec",
+        "type": "function",
+        "z": "681bb4ea.1eaa4c",
+        "name": "set ",
+        "func": "msg.method = \"POST\";\nmsg.url = \"https://gateway.watsonplatform.net/visual-recognition/api/v3/classify?version=2018-03-19&classifier_ids=HaluskyNOTHALUSKY_187118323&url=\"+msg.url;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 307,
+        "y": 72,
+        "wires": [
+            [
+                "700839a8.1033b8"
+            ]
+        ]
+    },
+    {
+        "id": "1afb6377.77bfad",
+        "type": "function",
+        "z": "c529ef43.a689d",
+        "name": "is it halusky?",
+        "func": "if (typeof msg.payload == 'undefined') {\n    return null;\n}\n\nmsg.result = msg.payload\n\nvar bestcolor = -1;\nvar colorscore = 0;\nvar c_id = 0;\nvar say = \"\";\nvar item;\n\nfor ( c_id=0; c_id < (msg.result.images[0].classifiers.length); c_id++ ){ \n    var bestItem = -1;\n    var itemScore = 0;\n    for( i =0; i<(msg.result.images[0].classifiers[c_id].classes.length); i++ ){\n      var object = msg.result.images[0].classifiers[c_id].classes[i].class;\n        if( msg.result.images[0].classifiers[c_id].classes[i].score > itemScore){\n            bestItem = i;\n            itemScore =  msg.result.images[0].classifiers[c_id].classes[i].score;\n        }\n    }\n \n    if( bestItem != -1){\n        item = msg.result.images[0].classifiers[c_id].classes[bestItem].class;\n        var score = msg.result.images[0].classifiers[c_id].classes[bestItem].score * 100;\n    //    say = say + \" Watson's \" + msg.result.images[0].classifiers[c_id].name + \" classifier thinks this picture contains a \" + item +\".\";\n        say = say + \" WILDduckDev says it sees \" + item +\" in this photo! :) . \\n\";\n    }\n    else{\n        say = say + ' WILDduckDev does not recognize halusky in this picture' + \"\\n\";\n    }\n}\n\nvar picInfo = msg.result.images[0].classifiers[0].classes;\nvar arrayLength = picInfo.length;\nvar outputMsg = [];\nvar temp = \"\";\nfor (var i = 0; i < arrayLength; i++) {\n    temp = temp + picInfo[i].class + \" - \" + picInfo[i].score + \"\\n\";\n}\noutputMsg = { payload : \n                {   chatId : global.get(\"chatid\"), \n                    type : \"message\", \n                    content : say + temp\n                }\n};\n\nreturn outputMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 938,
+        "y": 156,
+        "wires": [
+            [
+                "a5855949.7ef548"
+            ]
+        ]
+    },
+    {
+        "id": "ad0a85d2.01454",
+        "type": "http request",
+        "z": "681bb4ea.1eaa4c",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "url": "",
+        "tls": "",
+        "x": 466,
+        "y": 154,
+        "wires": [
+            [
+                "b5188532.c04ad8"
+            ]
+        ]
+    },
+    {
+        "id": "7713683a.a5e13",
+        "type": "function",
+        "z": "681bb4ea.1eaa4c",
+        "name": "set ",
+        "func": "msg.method = \"POST\";\nmsg.url = \"https://gateway.watsonplatform.net/visual-recognition/api/v3/classify?version=2018-03-19&classifier_ids=food&url=\"+msg.url;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 304,
+        "y": 155,
+        "wires": [
+            [
+                "ad0a85d2.01454"
+            ]
+        ]
+    }
+]
